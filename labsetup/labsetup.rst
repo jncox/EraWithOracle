@@ -4,7 +4,7 @@
 Oracle Lab Setup
 ----------------------
 
-Welcome to the Databases bootcamp. This bootcamp is meant to provide you with first hand experience in why Nutanix is an ideal platform for Database workloads.
+Welcome to the Databases bootcamp. This bootcamp is meant to provide you with first-hand experience in why Nutanix is an ideal platform for database workloads.
 
 Historically, it has been a challenge to virtualize Oracle because of the high cost of traditional virtualization stacks and the impact that a SAN-based architecture can have on performance. Businesses and their IT departments have constantly fought to balance cost, operational simplicity, and consistent predictable performance.
 
@@ -42,13 +42,13 @@ Nutanix Era provides DBaaS for your Enterprise Cloud. Leveraging the Nutanix Ent
 
   #. In **Prism Central**, select :fa:`bars` **> Services > Calm**.\
 
-  #. Select **Projects** from the lefthand menu and click **+ Create Project**.
+  #. Select **Projects** from the left-hand menu and click **+ Create Project**.
 
      .. figure:: images/2.png
 
   #. Fill out the following fields:
 
-     - **Project Name** - *Initials*\ -Project
+     - **Project Name** - *USERXX*\ -Project
      - Under **Users, Groups, and Roles**, select **+ User**
         - **Name** - Administrators
         - **Role** - Project Admin
@@ -74,7 +74,7 @@ Nutanix Era provides DBaaS for your Enterprise Cloud. Leveraging the Nutanix Ent
 
   #. Fill out the following fields to complete the user VM request:
 
-     - **Name** - *Initials*\ -WinToolsVM
+     - **Name** - *USERXX*\ -WinToolsVM
      - **Description** - Manually deployed Tools VM
      - **vCPU(s)** - 2
      - **Number of Cores per vCPU** - 1
@@ -92,4 +92,4 @@ Nutanix Era provides DBaaS for your Enterprise Cloud. Leveraging the Nutanix Ent
 
   #. Click **Save** to create the VM.
 
-  #. Power on your *Initials*\ **-WinToolsVM**.
+  #. Power on your *USERXX*\ **-WinToolsVM**.
