@@ -4,33 +4,34 @@
 Deploying Oracle with Era
 -------------------------
 
-Each quarter, Oracle releases a grouping of patches referred to as a PSU. **In this lab you will walk through the deployment and patching of both Oracle and Grid software for an Oracle 19c database using Era.**
+In this lab, you use Era to deploy a new Oracle database.
 
-Create Oracle Server with Era
-+++++++++++++++++++++++++++++
+Create Oracle Database with Era
++++++++++++++++++++++++++++++++
 
-In this exercise you will deploy a fresh Oracle database using your *Initials*\ **_ORACLE_19C** 1.0 Software Profile.
+In this exercise you will deploy a new Oracle database using your *USERXX*\ **_ORACLE_19C** 1.0 Software Profile.
 
-#. Select **Databases** from the dropdown menu and **Sources** from the lefthand menu.
+#. Select **Databases** from the drop-down menu, and then **Sources** from the left-hand menu.
 
-#. Click **+ Provision > Single Node Database**.
+#. Click **+ Provision > Oracle > Single Instance Database**.
 
-#. In the **Provision a Database** wizard, fill out the following fields to configure the Database Server:
+#. In the **Provision an Oracle Single Instance Database** screen, fill out the following fields:
 
-   - **Engine** - Oracle
    - **Database Server** - Create New Server
-   - **Database Server Name** - *Initials*\ _oracle_prod
+   - **Database Server Name** - *USERXX*\ _oracle_prod
    - **Description** - (Optional)
-   - **Software Profile** - *Initials*\ _ORACLE_19C
+   - **Nutanix Cluster** – EraCluster
+   - **Software Profile** - *USERXX*\ _ORACLE_19C
    - **Compute Profile** - ORACLE_SMALL
    - **Network Profile** - Primary_ORACLE_NETWORK
-   - Select **Enable High Availability**
-   - **SYS ASM Password** - oracle
-   - **SSH Public Key for Node Access** - Select **Text**
+   - **ASM Driver** - None (default)
+   - Select **Enable High Availability (SIHA)**
+   - **SYS ASM Password** - `Nutanix/4u`
+   - **SSH Public Key for Node Access** - Select **Text**, and then click the icon in the upper right-hand corner of the window below to copy the script to your clipboard. You may then paste the following into the *SSH Public Key for Node Access* text box:
 
-   ::
+   .. code-block:: bash
 
-      ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAii7qFDhVadLx5lULAG/ooCUTA/ATSmXbArs+GdHxbUWd/bNGZCXnaQ2L1mSVVGDxfTbSaTJ3En3tVlMtD2RjZPdhqWESCaoj2kXLYSiNDS9qz3SK6h822je/f9O9CzCTrw2XGhnDVwmNraUvO5wmQObCDthTXc72PcBOd6oa4ENsnuY9HtiETg29TZXgCYPFXipLBHSZYkBmGgccAeY9dq5ywiywBJLuoSovXkkRJk3cd7GyhCRIwYzqfdgSmiAMYgJLrz/UuLxatPqXts2D8v1xqR9EPNZNzgd4QHK4of1lqsNRuz2SxkwqLcXSw0mGcAL8mIwVpzhPzwmENC5Orw==
+         ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAii7qFDhVadLx5lULAG/ooCUTA/ATSmXbArs+GdHxbUWd/bNGZCXnaQ2L1mSVVGDxfTbSaTJ3En3tVlMtD2RjZPdhqWESCaoj2kXLYSiNDS9qz3SK6h822je/f9O9CzCTrw2XGhnDVwmNraUvO5wmQObCDthTXc72PcBOd6oa4ENsnuY9HtiETg29TZXgCYPFXipLBHSZYkBmGgccAeY9dq5ywiywBJLuoSovXkkRJk3cd7GyhCRIwYzqfdgSmiAMYgJLrz/UuLxatPqXts2D8v1xqR9EPNZNzgd4QHK4of1lqsNRuz2SxkwqLcXSw0mGcAL8mIwVpzhPzwmENC5Orw==
 
 
    .. note::
@@ -39,37 +40,36 @@ In this exercise you will deploy a fresh Oracle database using your *Initials*\ 
 
    .. figure:: images/4.png
 
-#. Click **Next**, and fill out the following fields to configure the Database:
+#. Click **Next**, and fill out the following fields:
 
-   -  **Database Name** - *Initials*\ _proddb
-   -  **SID** - *Initials*\ prod
-   -  **SYS and SYSTEM Password** - Nutanix/4u
+   -  **Database Name** - *USERXX*\ _proddb
+   -  **SID** - orclprod
+   -  **Global Database Name** - orclprod (default)
+   -  **SYS and SYSTEM Password** - `Nutanix/4u`
    -  **Database Parameter Profile** - ORACLE_SMALL_PARAMS
 
    .. figure:: images/5.png
 
    .. note::
 
-      For each database engine supported by Era, you have the opportunity to run scripts before and after database creation. Common use cases include:
+      For each database engine supported by Era, you have the opportunity to run scripts before and/or after database creation. Common use cases include:
 
-      - Data masking scripts
-      - Register the database with DB monitoring solution
-      - Scripts to update DNS/IPAM
-      - Scripts to automate application setup, such as app-level cloning for Oracle PeopleSoft
+      - Data masking scripts.
+      - Register the database with a database monitoring solution.
+      - Scripts to update DNS/IPAM.
+      - Scripts to automate application setup, such as app-level cloning for Oracle PeopleSoft.
 
-      **Encryption** can be used in situations where compliance requires encryption and stops would-be attackers from bypassing the database and reading sensitive information directly from storage by enforcing data-at-rest encryption in the database layer.
+      Encryption can be used in situations where compliance requires encryption and stops would-be attackers from bypassing the database and reading sensitive information directly from storage by enforcing data-at-rest encryption in the database layer.
 
-#. Click **Next** and fill out the following fields to configure the Time Machine for your database:
+#. Click **Next**, and then fill out the following fields to configure the Time Machine for your database:
 
-   - **Name** - *Initials*\ _proddb_TM (Default)
+   - **Name** - *USERXX*\ _proddb_TM (default)
    - **Description** - (Optional)
    - **SLA** - DEFAULT_OOB_GOLD_SLA
-   - **Schedule** - (Defaults)
+   - **Schedule** - (default)
 
    .. figure:: images/6.png
 
-#. Click **Provision** to begin creating your new database server VM and *Initials*\ **_proddb** database.
+#. Click **Provision** to begin creating your new database server VM and *USERXX*\ **_proddb** database.
 
-#. Select **Operations** from the dropdown menu to monitor the provisioning. This process should take approximately 60 minutes (depending on your cluster configuration).
-
-#. Please proceed to the following exercises while the database is being provisioned.
+#. Select **Operations** from the drop-down menu to monitor the provisioning. This process should take approximately 30-60 minutes (depending on your cluster configuration). This must complete before you are able to proceed to the next section. Take a moment to stretch, take a bio break, and catch up on e-mail (you haven't been checking e-mail this whole time, have you?!).
